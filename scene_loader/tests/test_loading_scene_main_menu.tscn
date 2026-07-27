@@ -4,7 +4,7 @@
 
 [node name="TestLoadingScene" type="Node2D" unique_id=263318075]
 script = ExtResource("1_ketag")
-initial_scene = &"uid://b48pq05sp0ry6"
+next_scene = &"res://scene_loader/tests/test_loading_scene_level_1.tscn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1222738815]
 
