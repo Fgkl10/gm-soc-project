@@ -32,11 +32,12 @@ func _start_load() -> void:
 	if state == OK:
 		set_process(true)
 	else:
-		push_warning("Failed to start loading scene: %s, error %s" % [scene_path, error_string(state)])
+		push_error("Load request failed: %s -> %s" % [error_string(state), scene_path])
 
 func _process(_delta: float) -> void:
 	var load_status = ResourceLoader.load_threaded_get_status(scene_path, progress)
-	progress_changed.emit(progress[0])
+	if not progress.is_empty():
+		progress_changed.emit(progress[0])
 	match load_status:
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 			push_error("Load failed: invalid resource ->" + scene_path)
@@ -45,6 +46,7 @@ func _process(_delta: float) -> void:
 			push_error("Load failed: loading error ->" + scene_path)
 			set_process(false)
 		ResourceLoader.THREAD_LOAD_LOADED:
+			set_process(false)
 			loaded_resourse = ResourceLoader.load_threaded_get(scene_path)
 			get_tree().change_scene_to_packed(loaded_resourse)
 			load_finished.emit()
