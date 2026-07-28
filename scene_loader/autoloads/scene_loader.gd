@@ -8,7 +8,7 @@ signal load_finished
 # 2) Call `SceneLoader.load_scene(&"res://path/to/your_scene.tscn")` from gameplay/UI scripts.
 # 3) Optional: replace `loading_scene` with your own loading screen PackedScene.
 var loading_scene: PackedScene = preload("uid://c200i2a3lnad4")
-var loaded_resourse: PackedScene
+var loaded_resource: PackedScene
 var scene_path: String
 var progress: Array = []
 var use_sub_threads: bool = true
@@ -53,8 +53,8 @@ func _process(_delta: float) -> void:
 			set_process(false)
 		ResourceLoader.THREAD_LOAD_LOADED:
 			set_process(false)
-			loaded_resourse = ResourceLoader.load_threaded_get(scene_path)
-			get_tree().change_scene_to_packed(loaded_resourse)
+			loaded_resource = ResourceLoader.load_threaded_get(scene_path)
+			get_tree().change_scene_to_packed(loaded_resource)
 			load_finished.emit()
 		
 		
