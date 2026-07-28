@@ -3,10 +3,9 @@ extends Node
 signal progress_changed(progress)
 signal load_finished
 
-# Autoload usage:
-# 1) Register this script as "SceneLoader" in Project Settings -> Autoload.
-# 2) Call `SceneLoader.load_scene(&"res://path/to/your_scene.tscn")` from gameplay/UI scripts.
-# 3) Optional: replace `loading_scene` with your own loading screen PackedScene.
+# SceneLoader usage:
+# 1) Call `SceneLoader.load_scene(&"res://path/to/your_scene.tscn")` from gameplay/UI scripts.
+# 2) Optional: replace `loading_scene` with your own loading screen PackedScene.
 var loading_scene: PackedScene = preload("uid://c200i2a3lnad4")
 var loaded_resource: PackedScene
 var scene_path: String
